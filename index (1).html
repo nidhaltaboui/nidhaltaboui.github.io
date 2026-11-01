@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Nidhal Taboui, ERP-BI engineering student seeking a Data, BI or software PFE internship from January 2027.">
+<title>Nidhal Taboui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: one left-aligned column. The hero pairs the name with a live schematic of the ONAS ETL pipeline (the single bold move); everything else stays quiet: ruled rows, a chronological timeline, small mono labels. */
+:root {
+  --bg: #EDF1F3;
+  --surface: #F8FAFB;
+  --fg: #0D1B26;
+  --muted: #4A5C69;
+  --line: #CAD5DB;
+  --accent: #076E72;
+  --accent-ink: #F2FAFA;
+  --signal: #B86B05;
+  --f-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A141C;
+    --surface: #102029;
+    --fg: #E4EDF1;
+    --muted: #93A7B3;
+    --line: #22384A;
+    --accent: #4FC4C2;
+    --accent-ink: #04201F;
+    --signal: #F0B04A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A141C;
+  --surface: #102029;
+  --fg: #E4EDF1;
+  --muted: #93A7B3;
+  --line: #22384A;
+  --accent: #4FC4C2;
+  --accent-ink: #04201F;
+  --signal: #F0B04A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+h1, h2, h3 {
+  font-family: var(--f-display);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+section[id] { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 4.5rem); }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.sect { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.label {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.muted { color: var(--muted); }
+.tlink { color: var(--accent); font-weight: 600; text-underline-offset: 4px; }
+
+/* Header */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.head-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.7rem;
+}
+.brand {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.nav { display: flex; align-items: center; gap: 1.75rem; }
+.nav a { text-decoration: none; font-size: 0.95rem; color: var(--muted); }
+.nav a:hover { color: var(--fg); }
+.nav a.nav-cta {
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.nav a.nav-cta:hover { color: var(--accent-ink); filter: brightness(1.08); }
+@media (max-width: 640px) { .nav a.nav-link { display: none; } }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 1.3rem;
+  border: 1.5px solid var(--fg);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--fg);
+  background: transparent;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
+}
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.38rem 0.9rem 0.38rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); flex: none; }
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--signal);
+  animation: ping 2.4s ease-out infinite;
+}
+@keyframes ping { from { transform: scale(1); opacity: 0.6; } to { transform: scale(3.2); opacity: 0; } }
+.hero h1 {
+  margin-top: 1.4rem;
+  font-size: clamp(3.4rem, 9vw, 6.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+}
+.hero h1 span { display: block; color: var(--accent); }
+.role {
+  margin-top: 1.5rem;
+  font-family: var(--f-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.lede { margin-top: 1rem; font-size: 1.2rem; line-height: 1.5; max-width: 34em; }
+.sub { margin-top: 0.9rem; max-width: 36em; color: var(--muted); }
+.cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Pipeline schematic */
+.pipe {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.25rem 1.25rem 1.1rem;
+}
+.pipe-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding-bottom: 0.95rem;
+  margin-bottom: 1.3rem;
+  border-bottom: 1px dashed var(--line);
+}
+.stages { list-style: none; padding: 0; position: relative; display: grid; gap: 1.15rem; }
+.stages::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--line);
+}
+.stages::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal);
+  z-index: 2;
+  animation: flow 5.5s linear infinite;
+}
+@keyframes flow {
+  0% { top: 10px; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { top: calc(100% - 18px); opacity: 0; }
+}
+.stage { position: relative; z-index: 1; display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 1rem; align-items: start; }
+.mk { width: 16px; height: 16px; margin-top: 4px; border: 2px solid var(--accent); background: var(--surface); border-radius: 3px; }
+.stage-t { font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; line-height: 1.25; }
+.stage-d { font-size: 0.9rem; color: var(--muted); line-height: 1.45; margin-top: 0.1rem; }
+.pipe-foot { margin-top: 1.3rem; padding-top: 0.9rem; border-top: 1px dashed var(--line); }
+
+/* Fact strip */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  padding-block: 1.3rem;
+  border-block: 1px solid var(--line);
+}
+.facts dd { margin-top: 0.3rem; }
+@media (max-width: 700px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+
+/* Section heads */
+.sect-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.sect-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); font-weight: 600; }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 4rem); }
+@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } }
+.about-text { max-width: 36em; display: grid; gap: 1rem; font-size: 1.12rem; }
+.focus { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.focus li { display: grid; gap: 0.2rem; padding-block: 1rem; border-bottom: 1px solid var(--line); }
+.focus strong { font-family: var(--f-display); font-weight: 600; font-size: 1.15rem; }
+
+/* Tags */
+.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tags li {
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  line-height: 1.4;
+}
+
+/* Case studies */
+.cases { border-bottom: 1px solid var(--line); }
+.case {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-block: 2.1rem;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) { .case { grid-template-columns: minmax(0, 1fr); } }
+.case h3 { margin-top: 0.6rem; font-size: clamp(1.45rem, 2.6vw, 2rem); font-weight: 600; }
+.case .org { margin-top: 0.4rem; color: var(--muted); }
+.case ul.points { margin-top: 1.1rem; padding-left: 1.15rem; display: grid; gap: 0.55rem; max-width: 40em; }
+.case ul.points li::marker { color: var(--accent); }
+.case .stack { display: grid; gap: 0.7rem; align-content: start; }
+
+.minis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+.mini {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.mini h3 { font-size: 1.3rem; font-weight: 600; }
+.mini p.body { color: var(--muted); font-size: 0.98rem; }
+.mini .tags { margin-top: auto; padding-top: 0.5rem; }
+.more { margin-top: 1.5rem; }
+
+/* Timeline and skills share one column rhythm */
+.tl { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.tl > li, .skill-row {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.tl > li { padding-block: 1.6rem; }
+.when { font-family: var(--f-mono); font-size: 0.82rem; letter-spacing: 0.04em; color: var(--muted); padding-top: 0.35rem; }
+.tl h3 { font-size: 1.35rem; font-weight: 600; }
+.tl .where { color: var(--muted); margin-top: 0.2rem; }
+.tl .what { margin-top: 0.7rem; max-width: 42em; }
+.skill-rows { border-top: 1px solid var(--line); }
+.skill-row { padding-block: 1.15rem; align-items: baseline; }
+.skill-row h3 { font-size: 1.1rem; font-weight: 600; }
+@media (max-width: 640px) {
+  .tl > li, .skill-row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+}
+
+/* Education, languages, certificates */
+.trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 2rem; }
+.trio h3 { font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
+.trio ul { list-style: none; padding: 0; display: grid; gap: 1rem; margin-top: 1rem; }
+.trio strong { display: block; font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; line-height: 1.3; }
+.trio .meta { font-size: 0.92rem; color: var(--muted); }
+.lang { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.interests { margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: 0.3rem; }
+
+/* Contact */
+.contact h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; letter-spacing: -0.03em; max-width: 14em; }
+.contact .lead { margin-top: 1.1rem; max-width: 36em; font-size: 1.15rem; }
+.contact-list { list-style: none; padding: 0; margin-top: 2.25rem; border-top: 1px solid var(--line); }
+.contact-list li {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.contact-list .val { font-family: var(--f-mono); font-size: 0.95rem; overflow-wrap: anywhere; }
+.contact-list .val a { text-decoration-color: var(--line); text-underline-offset: 4px; }
+.act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.5rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.act:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 560px) {
+  .contact-list li { grid-template-columns: minmax(0, 1fr) auto; }
+  .contact-list .label { grid-column: 1 / -1; }
+}
+
+.site-foot {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.5rem 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot::after, .stages::after { animation: none; display: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#intro">Nidhal Taboui</a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-link" href="#work">Work</a>
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero" id="intro">
+    <div class="hero-copy">
+      <p class="status label"><span class="dot" aria-hidden="true"></span>Available for a PFE from January 2027</p>
+      <h1>Nidhal <span>Taboui</span></h1>
+      <p class="role">Computer Science engineering student, ERP-BI, ESPRIT</p>
+      <p class="lede">I build data pipelines that turn scattered spreadsheets into dashboards people can decide with, and the web applications around them.</p>
+      <p class="sub">Looking for a final-year internship in Data, Business Intelligence and Information Systems, or in Software Development.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <figure class="pipe" aria-label="Data pipeline built for the Sahline wastewater treatment plant, from Excel files to Power BI">
+      <figcaption class="pipe-head">
+        <span class="label">ONAS · Sahline plant</span>
+        <span class="label">ETL pipeline</span>
+      </figcaption>
+      <ol class="stages">
+        <li class="stage">
+          <span class="mk" aria-hidden="true"></span>
+          <div>
+            <p class="label">Source</p>
+            <p class="stage-t">15 Excel files</p>
+            <p class="stage-d">12 monthly reports and 3 annual ones, in heterogeneous formats</p>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="mk" aria-hidden="true"></span>
+          <div>
+            <p class="label">Restructure</p>
+            <p class="stage-t">Python</p>
+            <p class="stage-d">pandas and openpyxl</p>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="mk" aria-hidden="true"></span>
+          <div>
+            <p class="label">Stage</p>
+            <p class="stage-t">Talend Open Studio</p>
+            <p class="stage-d">ETL jobs into a staging area</p>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="mk" aria-hidden="true"></span>
+          <div>
+            <p class="label">Warehouse</p>
+            <p class="stage-t">PostgreSQL</p>
+            <p class="stage-d">Constellation schema: 5 fact tables, 3 dimensions</p>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="mk" aria-hidden="true"></span>
+          <div>
+            <p class="label">Serve</p>
+            <p class="stage-t">Power BI</p>
+            <p class="stage-d">Operations, energy, sludge, water quality and equipment, with DAX measures</p>
+          </div>
+        </li>
+      </ol>
+      <p class="pipe-foot label">n8n · daily run · e-mail alerts · logging</p>
+    </figure>
+  </section>
+
+  <div class="wrap">
+    <dl class="facts">
+      <div>
+        <dt class="label">Based in</dt>
+        <dd>El Aouina, Tunis</dd>
+      </div>
+      <div>
+        <dt class="label">Studying</dt>
+        <dd>Engineering degree, ERP-BI, ESPRIT, 5th year</dd>
+      </div>
+      <div>
+        <dt class="label">Background</dt>
+        <dd>Industrial electrical engineering, 2020 to 2024</dd>
+      </div>
+    </dl>
+  </div>
+
+  <section class="wrap sect" id="about">
+    <div class="sect-head"><h2>About</h2></div>
+    <div class="about">
+      <div class="about-text">
+        <p>I started in industrial electrical engineering and moved into data and information systems. Today I am in the fifth year of the ERP-BI specialization at ESPRIT.</p>
+        <p>I design end-to-end data pipelines, from ETL and data warehouses to orchestration and decision-support dashboards, and I build web applications with Angular, Spring Boot and Flask.</p>
+      </div>
+      <ul class="focus">
+        <li>
+          <strong>Data and BI</strong>
+          <span class="muted">ETL, data warehouses, orchestration and decision-support dashboards.</span>
+        </li>
+        <li>
+          <strong>Web applications</strong>
+          <span class="muted">Angular, Spring Boot and Flask.</span>
+        </li>
+        <li>
+          <strong>ERP and information systems</strong>
+          <span class="muted">SAP (ABAP, Fiori), Microsoft Dynamics and Odoo.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap sect" id="work" style="padding-top:0">
+    <div class="sect-head">
+      <h2>Selected work</h2>
+      <p class="label">5 projects</p>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div>
+          <p class="label">Internship · July to August 2026</p>
+          <h3>BI solution for the Sahline wastewater treatment plant</h3>
+          <p class="org">National Sanitation Office (ONAS)</p>
+          <ul class="points">
+            <li>Analyzed requirements with the GIMSI methodology and restructured 15 heterogeneous Excel files (12 monthly reports, 3 annual) with Python.</li>
+            <li>Built the ETL pipeline in Talend Open Studio: a staging area, then a PostgreSQL data warehouse in a constellation schema with 5 fact tables and 3 dimensions.</li>
+            <li>Designed Power BI dashboards for operations, energy, sludge, water quality and equipment, with DAX measures.</li>
+            <li>Delivered a monitoring website with 2026 forecasts and anomaly detection, and automated the pipeline with n8n: daily execution, e-mail alerts and logging.</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <p class="label">Stack</p>
+          <ul class="tags">
+            <li>Python</li><li>pandas</li><li>openpyxl</li><li>Talend Open Studio</li><li>PostgreSQL</li><li>Power BI</li><li>DAX</li><li>n8n</li><li>GIMSI</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <div>
+          <p class="label">Academic project</p>
+          <h3>Data Scout, a decision-support platform</h3>
+          <p class="org">Data pipeline and dashboards</p>
+          <ul class="points">
+            <li>End-to-end pipeline: Talend ETL, orchestration with Apache Airflow, workflow automation with n8n and Power BI dashboards.</li>
+            <li>Angular 17 and Spring Boot web application with role-based authentication for 4 decision-maker profiles, dedicated dashboard spaces and a predictive analytics engine.</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <p class="label">Stack</p>
+          <ul class="tags">
+            <li>Talend</li><li>Python</li><li>PostgreSQL</li><li>MySQL</li><li>Apache Airflow</li><li>n8n</li><li>Power BI</li><li>Angular</li><li>Spring Boot</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="minis">
+      <article class="mini">
+        <p class="label">Academic project · ERP</p>
+        <h3>Odoo purchasing management</h3>
+        <p class="body">A "Purchase Request" model with an approval workflow (statuses, mandatory budget), access rights and an automated action. Extended the Contact module with related purchase requests and a Kanban view, and the Project module with a "Purchase Required" field and conditional display.</p>
+        <ul class="tags"><li>Odoo ERP</li></ul>
+      </article>
+      <article class="mini">
+        <p class="label">Machine learning</p>
+        <h3>Heart disease risk prediction</h3>
+        <p class="body">An XGBoost model with hyperparameter optimization, evaluated on Accuracy and AUC, deployed in a Flask application that keeps a prediction history in SQLite.</p>
+        <ul class="tags"><li>Python</li><li>scikit-learn</li><li>XGBoost</li><li>Flask</li><li>SQLite</li></ul>
+      </article>
+      <article class="mini">
+        <p class="label">Desktop application</p>
+        <h3>Event management</h3>
+        <p class="body">A desktop application on a relational database, with CRUD operations, category management and image management.</p>
+        <ul class="tags"><li>JavaFX</li><li>MySQL</li></ul>
+      </article>
+    </div>
+    <p class="more"><a class="tlink" href="https://github.com/nidhaltaboui" target="_blank" rel="noopener noreferrer">More on GitHub &rarr;</a></p>
+  </section>
+
+  <section class="wrap sect" id="experience" style="padding-top:0">
+    <div class="sect-head">
+      <h2>Experience</h2>
+      <p class="label">Newest first</p>
+    </div>
+    <ol class="tl">
+      <li>
+        <p class="when">Jul 2026 to Aug 2026</p>
+        <div>
+          <h3>Engineering Intern, Business Intelligence</h3>
+          <p class="where">National Sanitation Office (ONAS)</p>
+          <p class="what">Built the BI solution for the Sahline wastewater treatment plant, from the requirements analysis to a daily automated pipeline with e-mail alerts. The full breakdown is in the first case study above.</p>
+        </div>
+      </li>
+      <li>
+        <p class="when">Jul 2025 to Sep 2025</p>
+        <div>
+          <h3>Company Immersion Internship</h3>
+          <p class="where">Tunisie Telecom, Béja</p>
+          <p class="what">Diagnosed and resolved fixed-network faults with the xDSL Tester JDSU and NetScan, and installed new lines.</p>
+        </div>
+      </li>
+      <li>
+        <p class="when">Feb 2024 to May 2024</p>
+        <div>
+          <h3>Final-Year Project (Bachelor's)</h3>
+          <p class="where">Fulidelec, Sidi Daoued</p>
+          <p class="what">Studied the electrical installation of SEBN-TN independently, following industry procedures and client requirements: installation plans, power balance calculations, the equipment distribution diagram and single-line diagrams.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap sect" id="skills" style="padding-top:0">
+    <div class="sect-head"><h2>Skills</h2></div>
+    <div class="skill-rows">
+      <div class="skill-row">
+        <h3>BI and data</h3>
+        <ul class="tags"><li>Power BI</li><li>Talend (ETL)</li><li>Data Warehouse</li><li>SQL</li><li>Excel (Power Query)</li><li>OLTP / OLAP</li><li>UML</li></ul>
+      </div>
+      <div class="skill-row">
+        <h3>Development and automation</h3>
+        <ul class="tags"><li>Python</li><li>Java / JavaFX</li><li>JavaScript / TypeScript</li><li>HTML</li><li>CSS</li><li>Angular</li><li>Spring Boot</li><li>Flask</li><li>Apache Airflow</li><li>n8n</li><li>Linux</li></ul>
+      </div>
+      <div class="skill-row">
+        <h3>ML and AI</h3>
+        <ul class="tags"><li>scikit-learn</li><li>XGBoost</li><li>statsmodels</li><li>mlxtend</li><li>Clustering</li><li>Time series</li><li>Anomaly detection</li><li>Recommendation systems</li></ul>
+      </div>
+      <div class="skill-row">
+        <h3>ERP</h3>
+        <ul class="tags"><li>SAP (ABAP, Fiori)</li><li>Microsoft Dynamics</li><li>Odoo</li></ul>
+      </div>
+      <div class="skill-row">
+        <h3>Databases, tools and methods</h3>
+        <ul class="tags"><li>MySQL</li><li>SQL Server</li><li>MongoDB</li><li>Git</li><li>GitHub</li><li>Jira</li><li>Postman</li><li>Maven</li><li>REST APIs</li><li>JWT</li><li>GIMSI</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sect" id="education" style="padding-top:0">
+    <div class="trio">
+      <div>
+        <h3>Education</h3>
+        <ul>
+          <li>
+            <strong>Engineering Degree in Computer Science, Business Intelligence (ERP-BI)</strong>
+            <span class="meta">ESPRIT · Sept 2024 to present</span>
+          </li>
+          <li>
+            <strong>Bachelor's Degree in Industrial Electrical Engineering</strong>
+            <span class="meta">Higher Institute of Technological Studies of El Kef · Sept 2020 to June 2024</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Languages</h3>
+        <ul>
+          <li class="lang"><strong>Arabic</strong><span class="meta">Native</span></li>
+          <li class="lang"><strong>English</strong><span class="meta">B2</span></li>
+          <li class="lang"><strong>French</strong><span class="meta">B2</span></li>
+          <li class="lang"><strong>German</strong><span class="meta">A2</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Certificates · Coursera, 2026</h3>
+        <ul>
+          <li><strong>Introduction to CRM with HubSpot</strong></li>
+          <li><strong>HubSpot Ticketing System</strong></li>
+          <li><strong>Customer Personas in Canva</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="interests">
+      <p class="label">Interests</p>
+      <p>Data analytics and Business Intelligence · Big Data technologies · Technological innovation · Language learning</p>
+    </div>
+  </section>
+
+  <section class="wrap sect contact" id="contact" style="padding-top:0">
+    <h2>Looking for a final-year internship from January 2027.</h2>
+    <p class="lead">I am open to roles in Data, Business Intelligence and Information Systems, or in Software Development. The quickest way to reach me is by e-mail.</p>
+    <ul class="contact-list">
+      <li>
+        <span class="label">E-mail</span>
+        <span class="val" id="val-email"><a href="mailto:nidhaltaboui5@gmail.com">nidhaltaboui5@gmail.com</a></span>
+        <button class="act" type="button" id="copy-email" data-copy="nidhaltaboui5@gmail.com" data-target="val-email">Copy</button>
+      </li>
+      <li>
+        <span class="label">Phone</span>
+        <span class="val" id="val-phone"><a href="tel:+21695252125">+216 95 252 125</a></span>
+        <button class="act" type="button" id="copy-phone" data-copy="+216 95 252 125" data-target="val-phone">Copy</button>
+      </li>
+      <li>
+        <span class="label">LinkedIn</span>
+        <span class="val">linkedin.com/in/nidhal-taboui-6abb911a5</span>
+        <a class="act" href="https://www.linkedin.com/in/nidhal-taboui-6abb911a5" target="_blank" rel="noopener noreferrer">Open</a>
+      </li>
+      <li>
+        <span class="label">GitHub</span>
+        <span class="val">github.com/nidhaltaboui</span>
+        <a class="act" href="https://github.com/nidhaltaboui" target="_blank" rel="noopener noreferrer">Open</a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer class="wrap site-foot label">
+  <span>Nidhal Taboui · El Aouina, Tunis</span>
+  <span>Updated November 2026</span>
+</footer>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('[data-copy]');
+  Array.prototype.forEach.call(buttons, function (btn) {
+    var timer;
+    function say(msg) {
+      btn.textContent = msg;
+      clearTimeout(timer);
+      timer = setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+    }
+    function selectText() {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      if (!el) { say('Copy failed'); return; }
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      say('Selected');
+    }
+    btn.addEventListener('click', function () {
+      try {
+        navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(
+          function () { say('Copied'); },
+          selectText
+        );
+      } catch (e) {
+        selectText();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
